@@ -4,18 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Abstraction
+namespace Inheritance
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            //user u = new user();
-            //u.purchase();
+            Batsman b = new Batsman();  
+            b.play();
 
-            Amazon A = new user();//Parent class refrence child class object this is also possible
-            A.purchase();
-
+            Console.WriteLine("Team: "+b.team);
+            Console.WriteLine("Batsman age is: "+b.age);
         }
     }
 }
