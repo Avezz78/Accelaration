@@ -1,34 +1,67 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace demo1
+namespace PhoneBook
 {
     internal class Program
     {
-       
         static void Main(string[] args)
         {
-            
-            student s = new student();
+            // for operations taking user inputs
+            Console.WriteLine("hello from the consele phoneBook app");
+            Console.WriteLine("select operationn");
+            Console.WriteLine("1 add contact");
+            Console.WriteLine("2 Display contact by number");
+            Console.WriteLine("3 view all contacts");
+            Console.WriteLine("4 search for contacts for a given name");
+            Console.WriteLine("press x to exit");
 
-            s.Marksscored = 400;
-            s.Studentid = 123;
-            s.StudentName = "sahil";
-            s.Standard = 10;
-            s.StudentAttended = 220;
-            s.TotalMarks = 600;
-            s.TotalWorkingDays = 250;
+            var userInput = Console.ReadLine();
+            var PhoneBook = new PhoneBook();    // creating object of phonebook
 
-            
-            Console.WriteLine("student name:"+s.StudentName);
-            Console.WriteLine("student id:"+s.Studentid);
-            Console.WriteLine("student attended:"+s.StudentAttended);
-            Console.WriteLine("standard:"+s.Standard);
-            Console.WriteLine("totalmarks:"+s.TotalMarks);
-            Console.WriteLine("totalworkingdays:"+s.TotalWorkingDays);
-            Console.WriteLine("totalmarksScored:"+s.Marksscored);
-           Console.WriteLine("Result:"+s.Result);
+            while (true) //
+            {
+                switch (userInput)
+                {
+                    case "1":
+                        Console.WriteLine("contact name: ");
+                        var name = Console.ReadLine();
+                        Console.WriteLine("contact number:");
+                        var number = Console.ReadLine();
 
-            s.Percentage();
+                        var newContact = new Contact(name, number);
+                        PhoneBook.AddContact(newContact);
+                        break;
+
+                    case "2":
+                        Console.WriteLine("contact num to search");
+                        var SearchNumber = Console.ReadLine();
+                        PhoneBook.DisplayContact(SearchNumber);
+                        break;
+
+                    case "3": // to display all contact
+                        PhoneBook.DisplayAllContact();
+                        break;
+
+                    case "4": // to search for a contact for a given name
+                        Console.WriteLine("Name search phrase");
+                        var searchPhrase= Console.ReadLine();   // to get value from user
+                        PhoneBook.DisplayMatchingContacts(searchPhrase);
+                        break;
+                    case "x":
+                        return;
+
+                    default:
+                        Console.WriteLine("select valid option");
+                        break;
+                }
+                Console.WriteLine("select option");
+                userInput = Console.ReadLine(); 
+
+            }
+            }
         }
     }
-}
